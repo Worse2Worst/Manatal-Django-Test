@@ -1,1 +1,3 @@
 Manatal Test
+
+Django Part
