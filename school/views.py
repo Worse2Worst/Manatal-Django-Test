@@ -37,10 +37,3 @@ class StudentViewSet(viewsets.ModelViewSet):
         school = get_object_or_404(Schools.objects.filter(pk=schools_pk))
         request.data['school'] = school.pk
         return super(StudentViewSet, self).update(request, *args, **kwargs)
-
-    # def destroy(self, request, pk=None, schools_pk=None, *args, **kwargs):
-    #     if not schools_pk:
-    #         return super(StudentViewSet, self).create(request, *args, **kwargs)
-    #     item = get_object_or_404(self.queryset, pk=pk, category__pk=category_pk)
-    #     self.perform_destroy(item)
-    #     return Response(status=status.HTTP_204_NO_CONTENT)

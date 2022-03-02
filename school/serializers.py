@@ -1,5 +1,4 @@
-# from rest_framework.serializers import HyperlinkedModelSerializer
-from rest_framework.serializers import ModelSerializer, HyperlinkedIdentityField, HyperlinkedRelatedField
+from rest_framework.serializers import ModelSerializer
 from .models import Schools, Students
 
 
