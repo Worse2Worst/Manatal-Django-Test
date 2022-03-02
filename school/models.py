@@ -1,9 +1,19 @@
 from django.db import models
-from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
 from uuid import uuid4
 from django.db import IntegrityError
-from rest_framework.exceptions import APIException
+from rest_framework.exceptions import PermissionDenied
+from rest_framework import status
+
+
+class SchoolFullExcpetion(PermissionDenied):
+    status_code = status.HTTP_400_BAD_REQUEST
+    default_code = 'invalid'
+
+    def __init__(self, num, status_code=None):
+        self.detail = f'The school is already full. , Max students = {num}'
+        if status_code is not None:
+            self.status_code = status_code
 
 
 # Check at least 1 alphabet, spaces are allowed, numbers are not allowed, using this for names and surnames
@@ -21,7 +31,7 @@ class Schools(models.Model):
 class Students(models.Model):
     first_name = models.CharField(max_length=20, validators=[alphabets])
     last_name = models.CharField(max_length=20, validators=[alphabets])
-    nationality = models.CharField(max_length=20, blank=True)
+    # nationality = models.CharField(max_length=20, blank=True)  # Trivial bonus about adding fields
     student_id = models.CharField(max_length=20, unique=True, editable=False)
     school = models.ForeignKey(Schools, db_column='school_id', on_delete=models.CASCADE)
 
@@ -39,7 +49,7 @@ class Students(models.Model):
         if not students_set.filter(id=self.id).exists():
             current_students = len(students_set.all())
             if current_students >= max_students_allowed:
-                raise ValidationError(f'The school is already full. , Max students = {school.max_students}')
+                raise SchoolFullExcpetion(school.max_students)
         # Also, enforcing unique "student_id"
         if self.student_id:
             super(Students, self).save(*args, **kwargs)

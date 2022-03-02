@@ -23,7 +23,7 @@ router.register('schools', views.SchoolViewSet)
 router.register('students', views.StudentViewSet)
 
 student_router = routers.NestedSimpleRouter(router, 'schools', lookup='schools')
-student_router.register('students', views.StudentViewSet)
+student_router.register('students', views.StudentViewSet, basename='schools-students')
 
 urlpatterns = [
     path('admin/', admin.site.urls),

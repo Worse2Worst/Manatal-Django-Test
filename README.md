@@ -20,3 +20,8 @@ I put comments in the codes about edge cases handling.
 
 ### Step 3: 
 Time used: around 1.5 hours.
+
+# Bonus
+1. Added field 'nationality'  (Commented out)
+2. Added search filters, can search first_name, last_name of students, can search name of schools.
+3. Added pagination size 50, tested with size 2, it worked. 
