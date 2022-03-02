@@ -31,7 +31,7 @@ class Schools(models.Model):
 class Students(models.Model):
     first_name = models.CharField(max_length=20, validators=[alphabets])
     last_name = models.CharField(max_length=20, validators=[alphabets])
-    # nationality = models.CharField(max_length=20, blank=True)  # Trivial bonus about adding fields
+    nationality = models.CharField(max_length=20, blank=True)  # Trivial bonus about adding fields
     student_id = models.CharField(max_length=20, unique=True, editable=False)
     school = models.ForeignKey(Schools, db_column='school_id', on_delete=models.CASCADE)
 
