@@ -14,4 +14,9 @@ and learn some new things I haven't done before.
 Time used: around 1.5 hours.
 
 ### Step 2: 
-Time used: around 2.5 hours.
+Time used: around 2.5 hours.      
+I put comments in the codes about edge cases handling.     
+
+
+### Step 3: 
+Time used: around 1.5 hours.

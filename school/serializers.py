@@ -1,4 +1,5 @@
 from rest_framework.serializers import ModelSerializer
+from rest_framework_nested.relations import NestedHyperlinkedRelatedField
 from .models import Schools, Students
 
 
