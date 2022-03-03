@@ -28,12 +28,24 @@ class StudentViewSet(viewsets.ModelViewSet):
         if not schools_pk:
             return super(StudentViewSet, self).create(request, *args, **kwargs)
         school = get_object_or_404(Schools.objects.filter(pk=schools_pk))
+        _mutable = None
+        if hasattr(request.data, '_mutable'):
+            _mutable = request.data._mutable
+            request.data._mutable = True
         request.data['school'] = school.pk
+        if hasattr(request.data, '_mutable'):
+            request.data._mutable = _mutable
         return super(StudentViewSet, self).create(request, *args, **kwargs)
 
     def update(self, request, schools_pk=None,  *args, **kwargs):
         if not schools_pk:
             return super(StudentViewSet, self).update(request, *args, **kwargs)
         school = get_object_or_404(Schools.objects.filter(pk=schools_pk))
+        _mutable = None
+        if hasattr(request.data, '_mutable'):
+            _mutable = request.data._mutable
+            request.data._mutable = True
         request.data['school'] = school.pk
+        if hasattr(request.data, '_mutable'):
+            request.data._mutable = _mutable
         return super(StudentViewSet, self).update(request, *args, **kwargs)
