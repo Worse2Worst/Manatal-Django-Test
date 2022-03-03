@@ -32,9 +32,10 @@ class StudentViewSet(viewsets.ModelViewSet):
         if hasattr(request.data, '_mutable'):
             _mutable = request.data._mutable
             request.data._mutable = True
-        request.data['school'] = school.pk
-        if hasattr(request.data, '_mutable'):
+            request.data['school'] = school.pk
             request.data._mutable = _mutable
+        else:
+            request.data['school'] = school.pk
         return super(StudentViewSet, self).create(request, *args, **kwargs)
 
     def update(self, request, schools_pk=None,  *args, **kwargs):
@@ -45,7 +46,8 @@ class StudentViewSet(viewsets.ModelViewSet):
         if hasattr(request.data, '_mutable'):
             _mutable = request.data._mutable
             request.data._mutable = True
-        request.data['school'] = school.pk
-        if hasattr(request.data, '_mutable'):
+            request.data['school'] = school.pk
             request.data._mutable = _mutable
+        else:
+            request.data['school'] = school.pk
         return super(StudentViewSet, self).update(request, *args, **kwargs)
